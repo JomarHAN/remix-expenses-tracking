@@ -1,3 +1,4 @@
+import AuthForm from '~/components/auth/AuthForm'
 import authStyle from '~/styles/auth.css'
 
 export const links = () => {
@@ -5,5 +6,5 @@ export const links = () => {
 }
 
 export default function AuthPage() {
-    return <h1>Auth Page</h1>
+    return <AuthForm />
 }
