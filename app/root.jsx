@@ -8,10 +8,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import sharedStyle from '~/styles/shared.css'
+import sharedStyle from "~/styles/shared.css";
+import MainHeader from "./components/navigation/MainHeader";
 
 export const links = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : [{rel: 'stylesheet', href: sharedStyle}]),
+  ...(cssBundleHref
+    ? [{ rel: "stylesheet", href: cssBundleHref }]
+    : [{ rel: "stylesheet", href: sharedStyle }]),
 ];
 
 export default function App() {
@@ -23,12 +26,20 @@ export default function App() {
         <Meta />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
 
         <Links />
       </head>
       <body>
+        <MainHeader />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
