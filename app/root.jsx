@@ -9,7 +9,6 @@ import {
 } from "@remix-run/react";
 
 import sharedStyle from "~/styles/shared.css";
-import MainHeader from "./components/navigation/MainHeader";
 
 export const links = () => [
   ...(cssBundleHref
@@ -39,7 +38,6 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <MainHeader />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
