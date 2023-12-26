@@ -10,10 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Expenses {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  amount Float
-  date DateTime
+model Expense {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  amount    Float
+  date      DateTime
   dateAdded DateTime @default(now())
 }
