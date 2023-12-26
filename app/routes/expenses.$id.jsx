@@ -1,6 +1,7 @@
 import { useNavigate } from "@remix-run/react";
 import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
+import { getExpenseById } from "~/data/expenses.server";
 
 export default function ExpensesUpdatePage() {
   const navigate = useNavigate();
@@ -13,3 +14,7 @@ export default function ExpensesUpdatePage() {
     </Modal>
   );
 }
+
+export const loader = ({ params }) => {
+  return getExpenseById(params.id);
+};
