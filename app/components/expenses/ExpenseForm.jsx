@@ -9,13 +9,13 @@ import {
 function ExpenseForm() {
   const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
   const errorAction = useActionData();
-  let defaultValue = {};
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state != "idle";
 
   const loaderData = useLoaderData();
 
+  let defaultValue = {};
   defaultValue = loaderData
     ? {
         title: loaderData.title,
