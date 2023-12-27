@@ -1,10 +1,25 @@
-import AuthForm from '~/components/auth/AuthForm'
-import authStyle from '~/styles/auth.css'
+import AuthForm from "~/components/auth/AuthForm";
+import authStyle from "~/styles/auth.css";
 
 export const links = () => {
-    return [{rel: 'stylesheet', href: authStyle}]
-}
+  return [{ rel: "stylesheet", href: authStyle }];
+};
 
 export default function AuthPage() {
-    return <AuthForm />
+  return <AuthForm />;
 }
+
+export const action = async ({ request }) => {
+  const searchParams = new URL(request.url).searchParams;
+  const authMode = searchParams.get("mode") || "login";
+
+  const formData = await request.formData();
+  const credentials = Object.fromEntries(formData);
+
+  if (authMode === "login") {
+    // login
+  } else {
+    // signup
+  }
+  return null;
+};
