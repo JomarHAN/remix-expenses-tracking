@@ -25,10 +25,26 @@ export const getExpenses = async () => {
     }
 }
 
-export const getExpenseById = async (id) => {
+export const getExpenseById = async (expenseId) => {
     try {
-        const expense = await prisma.expense.findFirst({ where: { id: `${id}` } })
+        const expense = await prisma.expense.findFirst({ where: { id: expenseId } })
         return expense
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const updateExpenseById = async (expenseId, expenseForm) => {
+    try {
+        await prisma.expense.update({
+            where: { id: expenseId },
+            data: {
+                title: expenseForm.title,
+                amount: +expenseForm.amount,
+                date: new Date(expenseForm.date)
+            }
+        })
     } catch (error) {
         console.log(error)
         throw error
