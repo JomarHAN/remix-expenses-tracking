@@ -24,6 +24,5 @@ export default function ExpensesIndex() {
 }
 
 export const loader = () => {
-  console.log("EXPENSES LOADER");
   return getExpenses();
 };
