@@ -10,8 +10,7 @@ export const addExpenses = async (expensesData) => {
             }
         })
     } catch (error) {
-        console.log(error)
-        throw error
+        throw new Error("Failed to add the expense!")
     }
 
 }
@@ -20,8 +19,7 @@ export const getExpenses = async () => {
     try {
         return await prisma.expense.findMany({ orderBy: { dateAdded: "desc" } })
     } catch (error) {
-        console.log(error)
-        throw error;
+        throw new Error("Failed to get the Expenses List!")
     }
 }
 
@@ -30,8 +28,7 @@ export const getExpenseById = async (expenseId) => {
         const expense = await prisma.expense.findFirst({ where: { id: expenseId } })
         return expense
     } catch (error) {
-        console.log(error)
-        throw error
+        throw new Error("Failed to get the expense!")
     }
 }
 
@@ -46,8 +43,7 @@ export const updateExpenseById = async (expenseId, expenseForm) => {
             }
         })
     } catch (error) {
-        console.log(error)
-        throw error
+        throw new Error("Failed to update the expense!")
     }
 }
 
@@ -55,7 +51,6 @@ export const deleteExpense = async (expenseId) => {
     try {
         await prisma.expense.delete({ where: { id: expenseId } })
     } catch (error) {
-        console.log(error)
-        throw error
+        throw new Error("Failed to delete the item!")
     }
 }
