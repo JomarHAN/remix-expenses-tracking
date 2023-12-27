@@ -6,6 +6,8 @@ import { getExpenses } from "~/data/expenses.server";
 export default function ExpensesIndex() {
   const expenses = useLoaderData();
 
+  const hasExpenses = expenses && expenses.length > 0;
+
   return (
     <main>
       <section id="expenses-actions">
@@ -18,7 +20,13 @@ export default function ExpensesIndex() {
           <span>Download Raw Data</span>
         </a>
       </section>
-      <ExpensesList expenses={expenses} />
+      {hasExpenses ? (
+        <ExpensesList expenses={expenses} />
+      ) : (
+        <section id="no-expenses">
+          <h3>No Existing Expenses Found</h3>
+        </section>
+      )}
     </main>
   );
 }
