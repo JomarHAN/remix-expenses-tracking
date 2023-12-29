@@ -3,6 +3,7 @@ import ExpenseForm from "~/components/expenses/ExpenseForm";
 import { redirect, useNavigate } from "@remix-run/react";
 import { addExpenses } from "~/data/expenses.server";
 import { validateExpenseInput } from "~/data/validation.server";
+import { getUserSession } from "~/data/auth.server";
 
 export default function ExpensesAddPage() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function ExpensesAddPage() {
 export async function action({ request }) {
   const formData = await request.formData();
   const expensesForm = Object.fromEntries(formData);
+  const userId = await getUserSession(request);
 
   try {
     validateExpenseInput(expensesForm);
@@ -26,6 +28,6 @@ export async function action({ request }) {
     return error;
   }
 
-  await addExpenses(expensesForm);
+  await addExpenses(expensesForm, userId);
   return redirect("/expenses");
 }
