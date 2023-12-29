@@ -38,7 +38,7 @@ function isValidEmail(value) {
 }
 
 function isValidPassword(value) {
-    return value && value.trim().length > 7;
+    return value && value.trim().length >= 7;
 }
 
 export function validationCredentials(input) {
