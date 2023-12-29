@@ -2,6 +2,7 @@ import { Link, json, useLoaderData, useRouteError } from "@remix-run/react";
 import Chart from "~/components/expenses/Chart";
 import ExpenseStatistics from "~/components/expenses/ExpenseStatistics";
 import Error from "~/components/util/Error";
+import { requireUserSession } from "~/data/auth.server";
 import { getExpenses } from "~/data/expenses.server";
 
 export default function ExpensesAnalysisPage() {
@@ -15,8 +16,9 @@ export default function ExpensesAnalysisPage() {
   );
 }
 
-export const loader = async () => {
-  const expenses = await getExpenses();
+export const loader = async ({ request }) => {
+  const userId = await requireUserSession(request);
+  const expenses = await getExpenses(userId);
 
   if (!expenses || expenses.length === 0) {
     throw json(
