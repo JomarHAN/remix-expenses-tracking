@@ -42,7 +42,7 @@ function AuthForm() {
         <button disabled={isSubmitting}>
           {isSubmitting ? "Authenticating..." : submitBtnCaption}
         </button>
-        <Link to={authMode === "login" ? "?mode=signin" : "?mode=login"}>
+        <Link to={authMode === "login" ? "?mode=signup" : "?mode=login"}>
           {toggleBtnCaption}
         </Link>
       </div>
