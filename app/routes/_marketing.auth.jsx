@@ -49,3 +49,9 @@ export const action = async ({ request }) => {
     }
   }
 };
+
+export function headers({ actionHeaders, loaderHeaders, parentHeaders }) {
+  return {
+    "Cache-Control": parentHeaders.get("Cache-Control"),
+  };
+}
