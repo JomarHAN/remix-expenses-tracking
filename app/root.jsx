@@ -7,6 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useMatches,
   useRouteError,
 } from "@remix-run/react";
 
@@ -20,6 +21,9 @@ export const links = () => [
 ];
 
 export const Document = ({ title, children }) => {
+  const matches = useMatches();
+
+  const disableJS = matches.some((match) => match.handle?.disableJS);
   return (
     <html lang="en">
       <head>
@@ -27,7 +31,7 @@ export const Document = ({ title, children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
 
-        <title>{title}</title>
+        {title && <title>{title}</title>}
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -45,7 +49,8 @@ export const Document = ({ title, children }) => {
       <body>
         {children}
         <ScrollRestoration />
-        <Scripts />
+
+        {!disableJS && <Scripts />}
         <LiveReload />
       </body>
     </html>
