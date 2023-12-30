@@ -20,3 +20,9 @@ export const action = async ({ request }) => {
 export const links = () => {
   return [{ rel: "stylesheet", href: expensesStyle }];
 };
+
+export function headers({ actionHeaders, loaderHeaders, parentHeaders }) {
+  return {
+    "Cache-Control": "max-age=3600",
+  };
+}

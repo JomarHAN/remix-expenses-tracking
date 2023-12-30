@@ -41,3 +41,7 @@ export const action = async ({ params, request }) => {
   }
   return redirect("/expenses");
 };
+
+export const meta = ({ params, location, data, parentsData }) => {
+  return [{ title: `${data.title}`, description: "Update expense." }];
+};
